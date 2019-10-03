@@ -214,8 +214,7 @@ def verificacao(list_videos_id_temp, ultimo_video_baixado = None):
 
 def main():
     ultimo_video_id = None #Colocar o ultimo video gerado entre aspas
-    list_channels = ["UCsXVk37bltHxD1rDPwtNM8Q", "UC-lHJZR3Gqxm24_Vd_AJ5Yw", "UCONd1SNf3_QqjzjCVsURNuA", "UC5nc_ZtjKW1htCVZVRxlQAQ", "UC-kIKjS3gUFvsi4YoxveiWA",
-					"UC2-_WWPT_124iN6jiym4fOw", "UC_GQ4mac4oN3wl1UdbFuTEA"]
+    list_channels = ["UCN0-RRaxMgh86eOwndAklxw", "UCittVh8imKanO_5KohzDbpg", "UC0uVZd8N7FfIZnPu0y7o95A", "UCnQC_G5Xsjhp9fEJKuIcrSw"]
     for channelId in list_channels:
         file = open(".\\canais_files\\" + channelId)
         if not os.path.exists(".\\canais_json\\" + channelId):
