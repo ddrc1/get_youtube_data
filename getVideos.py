@@ -22,7 +22,7 @@ for channel in channels:
     # clica em VIDEOS
     driver.find_element_by_xpath(
         "/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse/div[3]/ytd-c4-tabbed-header-renderer/app-header-layout/div/app-header/div[2]/app-toolbar/div/div/paper-tabs/div/div/paper-tab[2]/div").click()
-    file = open("./canais_files" + channel, "w+")
+    file = open("./video_links/" + channel, "w+")
     alreadyVisited = []
     elements = []
 
@@ -53,7 +53,3 @@ for channel in channels:
         # Se não for possível dar mais scroll, quer dizer que não existem mais videos no canal e o loop se encerra
         if len(elements) == len(prevelements):
             break
-
-
-
-
