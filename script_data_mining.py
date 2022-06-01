@@ -1,7 +1,7 @@
 from apiclient.discovery import build
 import json, os, webvtt, glob, sys
 
-DEVELOPER_KEY = "" #Chave pessoal da api
+DEVELOPER_KEY = "AIzaSyDHKBf9SDZox650cawmcOott5pOp-td5yI" #Chave pessoal da api
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
