@@ -1,7 +1,7 @@
 from apiclient.discovery import build
 import json, os, webvtt, glob, sys
 
-DEVELOPER_KEY = "AIzaSyDVSOML90GcYq7ZVD_sC1aMLty6Gu6Ngqs" #Chave pessoal da api
+DEVELOPER_KEY = "" #Chave pessoal da api
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
@@ -98,7 +98,7 @@ def components_videos(video_response_items, transcript):
 def youtube_commentThread(YOUTUBE_VIDEO_ID):
     print("entrou no comentario")
     page_commentThread = []
-    # try:
+    
     commentThread_response = youtube.commentThreads().list(
         part="id,snippet,replies", videoId=YOUTUBE_VIDEO_ID, maxResults=100).execute()
     page_commentThread.append(commentThread_response.get("items"))
@@ -110,8 +110,7 @@ def youtube_commentThread(YOUTUBE_VIDEO_ID):
         newPage = commentThread_response.get("nextPageToken")
         page_commentThread.append(commentThread_response.get("items"))
         print(newPage)
-    # except:
-    #     pass
+   
     return page_commentThread
 
 
