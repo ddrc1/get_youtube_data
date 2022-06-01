@@ -46,7 +46,7 @@ def components_channels(channel_response_items, video_components):
                "video_id": video_components[0],
                "comment_count": video_components[9]}
     print(arquivo)
-    writeToJSONFile(".\\canais_json\\" + id, video_components[0], arquivo)
+    writeToJSONFile("./canais_json/" + id, video_components[0], arquivo)
     return channel_type
 
 
@@ -140,7 +140,7 @@ def components_commentThread(page_commentThread_items, channel_id, channel_type)
                                    "author_id": author_id,
                                    "comment_text": comment_text,
                                    "channel_id": channel_id}
-                writeToJSONFile(".\\Canais_json\\" + channel_id + "\\comments", id, arquivo_comment)
+                writeToJSONFile("./Canais_json/" + channel_id + "/comments", id, arquivo_comment)
                 if comment.get("replies") != None:
                     for reply in comment["replies"]["comments"]:
                         id_reply = reply["id"]
@@ -162,7 +162,7 @@ def components_commentThread(page_commentThread_items, channel_id, channel_type)
                                          "author_id": author_id,
                                          "comment_text": comment_text,
                                          "channel_id": channel_id}
-                        writeToJSONFile(".\\canais_json\\" + channel_id + "\\comments", id_reply, arquivo_reply)
+                        writeToJSONFile("./canais_json/" + channel_id + "/comments", id_reply, arquivo_reply)
 
 
 def writeToJSONFile(path, fileName, data):
@@ -211,25 +211,32 @@ def verificacao(list_videos_id_temp, ultimo_video_baixado = None):
     return list_videos_id
 
 
-def main():
+if __name__ == "__main__":
     ultimo_video_id = None #Colocar o ultimo video gerado entre aspas
-    list_channels = ["UCN0-RRaxMgh86eOwndAklxw", "UCittVh8imKanO_5KohzDbpg", "UC0uVZd8N7FfIZnPu0y7o95A", "UCnQC_G5Xsjhp9fEJKuIcrSw"]
+    list_channels = ["UCrcrV4J6exbyTY4gcbvL_lA", "UCC3L8QaxqEGUiBC252GHy3w", "UC0uVZd8N7FfIZnPu0y7o95A", "UCittVh8imKanO_5KohzDbpg", "UCN0-RRaxMgh86eOwndAklxw", 
+                     "UCmrLCXSDScliR7q8AxxjvXg", "UCnQC_G5Xsjhp9fEJKuIcrSw", "UCHuLYgw4dGbC2BuZQqPWV1g", "UCDG73pGqESS1XcEVY_0xwWw", "UCVY0aIaw-V9GbWmlab4Z_dw", 
+                     "UCTG-iJm0HtjWVOAwN8sA4Xg", "UCCvdjsJtifsZoShjcAAHZpA", "UCOVUyXd-d5P-hznNF9zJQ-g", "UCidbCSNfzJXScnt8LWtwrhA", "UCCT8a7d6S6RJUivBgNRsiYg", 
+                     "UC2PA-AKmVpU6NKCGtZq_rKQ", "CT5jxI_OYY2r--TjAGXD03A", "C5fdssPqmmGhkhsJi4VcckA", "UCJ6o36XL0CpYb6U5dNBiXHQ", "UCNvsIonJdJ5E4EXMa65VYpA"]
+    
     for channelId in list_channels:
-        file = open(".\\canais_files\\" + channelId)
-        if not os.path.exists(".\\canais_json\\" + channelId):
-            os.makedirs(".\\canais_json\\" + channelId)
-        if not os.path.exists(".\\canais_json\\" + channelId + "\\comments"):
-            os.makedirs(".\\canais_json\\" + channelId + "\\comments")
+        file = open("./canais_files/" + channelId)
+        if not os.path.exists("./canais_json/" + channelId):
+            os.makedirs("./canais_json/" + channelId)
+        if not os.path.exists("./canais_json/" + channelId + "/comments"):
+            os.makedirs("./canais_json/" + channelId + "/comments")
+            
         videos = []
         for line in file:
             videoId = line.split("?v=")[1]
             videos.append(videoId.strip("\n"))
         print(videos)
+        
         list_videos_id = verificacao(videos, ultimo_video_id)
         ultimo_video_id = None
         print(list_videos_id)
         print(str(len(videos) - len(list_videos_id)) + "/" + str(len(videos)))
         print("Canal sendo registrado: ", channelId)
+        
         channel_response_items = youtube_channels(channelId)
         for i in range(len(list_videos_id)):
             print("video sendo processado: " + str(list_videos_id[i]))
@@ -244,7 +251,3 @@ def main():
                     print(e)
                     sys.exit(1)
             print("Video ja registrados: ", list_videos_id[i])
-
-
-
-main()
