@@ -3,9 +3,10 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 
-driver = webdriver.Chrome('.\\chromedriver.exe')
+driver = webdriver.Chrome('./chromedriver.exe')
 driver.maximize_window()
 
+# IDs de canais previamente escolhidos
 channels = ["UCsXVk37bltHxD1rDPwtNM8Q", "UC-lHJZR3Gqxm24_Vd_AJ5Yw", "UCONd1SNf3_QqjzjCVsURNuA", "UC5nc_ZtjKW1htCVZVRxlQAQ", "UC-kIKjS3gUFvsi4YoxveiWA",
             "UC2-_WWPT_124iN6jiym4fOw", "UC_GQ4mac4oN3wl1UdbFuTEA"]
 
@@ -15,23 +16,30 @@ for channel in channels:
     print("\n--------------------------\n")
     print(channel)
     print("\n--------------------------\n")
+
     # clica em VIDEOS
     driver.find_element_by_xpath(
         "/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse/div[3]/ytd-c4-tabbed-header-renderer/app-header-layout/div/app-header/div[2]/app-toolbar/div/div/paper-tabs/div/div/paper-tab[2]/div").click()
-    file = open(".\\canais_files" + channel, "w+")
+    file = open("./canais_files" + channel, "w+")
     alreadyVisited = []
     elements = []
+
     while(True):
         prevelements = elements
         height = driver.execute_script("return document.body.scrollHeight")
+        print(height)
+
         time.sleep(1)
         driver.find_element_by_tag_name('body').send_keys(Keys.END)
-        print(height)
+        
+        # Adquire a lista de vídeos visíveis
         elements = driver.find_elements_by_xpath("//a[@id='thumbnail']")
         for element in elements:
             try:
                 if element not in alreadyVisited:
                     alreadyVisited.append(element)
+                    
+                    #adquire o id do video para salvar no arquivo referente ao canal
                     link = element.get_attribute("href")
                     print(link)
                     if link != None:
@@ -39,6 +47,8 @@ for channel in channels:
                         file.write("\n")
             except:
                 continue
+        
+        # Se não for possível dar mais scroll, quer dizer que não existem mais videos no canal e o loop se encerra
         if len(elements) == len(prevelements):
             break
 
