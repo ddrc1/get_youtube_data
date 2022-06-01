@@ -7,8 +7,10 @@ driver = webdriver.Chrome('./chromedriver.exe')
 driver.maximize_window()
 
 # IDs de canais previamente escolhidos
-channels = ["UCsXVk37bltHxD1rDPwtNM8Q", "UC-lHJZR3Gqxm24_Vd_AJ5Yw", "UCONd1SNf3_QqjzjCVsURNuA", "UC5nc_ZtjKW1htCVZVRxlQAQ", "UC-kIKjS3gUFvsi4YoxveiWA",
-            "UC2-_WWPT_124iN6jiym4fOw", "UC_GQ4mac4oN3wl1UdbFuTEA"]
+channels = ["UCrcrV4J6exbyTY4gcbvL_lA", "UCC3L8QaxqEGUiBC252GHy3w", "UC0uVZd8N7FfIZnPu0y7o95A", "UCittVh8imKanO_5KohzDbpg", "UCN0-RRaxMgh86eOwndAklxw", 
+            "UCmrLCXSDScliR7q8AxxjvXg", "UCnQC_G5Xsjhp9fEJKuIcrSw", "UCHuLYgw4dGbC2BuZQqPWV1g", "UCDG73pGqESS1XcEVY_0xwWw", "UCVY0aIaw-V9GbWmlab4Z_dw", 
+            "UCTG-iJm0HtjWVOAwN8sA4Xg", "UCCvdjsJtifsZoShjcAAHZpA", "UCOVUyXd-d5P-hznNF9zJQ-g", "UCidbCSNfzJXScnt8LWtwrhA", "UCCT8a7d6S6RJUivBgNRsiYg", 
+            "UC2PA-AKmVpU6NKCGtZq_rKQ", "CT5jxI_OYY2r--TjAGXD03A", "C5fdssPqmmGhkhsJi4VcckA", "UCJ6o36XL0CpYb6U5dNBiXHQ", "UCNvsIonJdJ5E4EXMa65VYpA"]
 
 for channel in channels:
     baseUrl = "https://www.youtube.com/channel/" + channel
