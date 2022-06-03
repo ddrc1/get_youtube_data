@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from configs import *
 
 
 driver = webdriver.Chrome('./chromedriver.exe')
 driver.maximize_window()
 
 # IDs de canais previamente escolhidos
-channels = config.CHANNELS['right'] + config.CHANNELS['left']
+channels = CHANNELS['right'] + CHANNELS['left']
 
 for channel in channels:
     baseUrl = "https://www.youtube.com/channel/" + channel
