@@ -7,10 +7,7 @@ driver = webdriver.Chrome('./chromedriver.exe')
 driver.maximize_window()
 
 # IDs de canais previamente escolhidos
-channels = ["UCrcrV4J6exbyTY4gcbvL_lA", "UCC3L8QaxqEGUiBC252GHy3w", "UC0uVZd8N7FfIZnPu0y7o95A", "UCittVh8imKanO_5KohzDbpg", "UCN0-RRaxMgh86eOwndAklxw", 
-            "UCmrLCXSDScliR7q8AxxjvXg", "UCnQC_G5Xsjhp9fEJKuIcrSw", "UCHuLYgw4dGbC2BuZQqPWV1g", "UCDG73pGqESS1XcEVY_0xwWw", "UCVY0aIaw-V9GbWmlab4Z_dw", 
-            "UCTG-iJm0HtjWVOAwN8sA4Xg", "UCCvdjsJtifsZoShjcAAHZpA", "UCOVUyXd-d5P-hznNF9zJQ-g", "UCidbCSNfzJXScnt8LWtwrhA", "UCCT8a7d6S6RJUivBgNRsiYg", 
-            "UC2PA-AKmVpU6NKCGtZq_rKQ", "CT5jxI_OYY2r--TjAGXD03A", "C5fdssPqmmGhkhsJi4VcckA", "UCJ6o36XL0CpYb6U5dNBiXHQ", "UCNvsIonJdJ5E4EXMa65VYpA"]
+channels = config.CHANNELS['right'] + config.CHANNELS['left']
 
 for channel in channels:
     baseUrl = "https://www.youtube.com/channel/" + channel
@@ -22,7 +19,7 @@ for channel in channels:
     # clica em VIDEOS
     driver.find_element_by_xpath(
         "/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse/div[3]/ytd-c4-tabbed-header-renderer/app-header-layout/div/app-header/div[2]/app-toolbar/div/div/paper-tabs/div/div/paper-tab[2]/div").click()
-    file = open("./video_links/" + channel, "w+")
+    file = open("./video_links/" + channel + ".txt", "w+")
     alreadyVisited = []
     elements = []
 
